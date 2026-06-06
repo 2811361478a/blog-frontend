@@ -15,13 +15,13 @@ const post=ref({
 })
 
 onMounted(async()=>{
-     const res=await axios.get(`http://localhost:8080/Post/${route.params.id}`)
+     const res=await axios.get(`https://blog-backend-production-ad2a.up.railway.app/Post/${route.params.id}`)
      post.value=res.data.data   
-     const catRes=await axios.get(`http://localhost:8080/Category`)
+     const catRes=await axios.get(`https://blog-backend-production-ad2a.up.railway.app/Category`)
      categories.value=catRes.data.data
 })
 const submit=async()=>{
-    await axios.put(`http://localhost:8080/Post/${route.params.id}?userId=${userStore.user.id}`,post.value)
+    await axios.put(`https://blog-backend-production-ad2a.up.railway.app/Post/${route.params.id}?userId=${userStore.user.id}`,post.value)
         router.push('/posts?message=修改成功')
 }
 </script>

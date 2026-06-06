@@ -23,12 +23,12 @@ function filterStatus(status){
     loadPosts()
 }
 onMounted(async()=>{
-    const userRes=await axios.get(`http://localhost:8080/Users/${route.params.id}`)
+    const userRes=await axios.get(`https://blog-backend-production-ad2a.up.railway.app/Users/${route.params.id}`)
     userInfo.value=userRes.data.data
     loadPosts()
 })
 async function loadPosts() {
-    let url=`http://localhost:8080/Post/user/${route.params.id}?page=${page.value}&size=${size.value}`
+    let url=`https://blog-backend-production-ad2a.up.railway.app/Post/user/${route.params.id}?page=${page.value}&size=${size.value}`
     if(userStore.user){
         url+=`&currentUserId=${userStore.user.id}`
     }

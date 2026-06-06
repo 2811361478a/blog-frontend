@@ -16,7 +16,7 @@ const confirmPassword=ref('')
 const passwordMessage=ref('')
 
 onMounted(async()=>{
-    const res=await axios.get(`http://localhost:8080/Users/${userStore.user.id}`)
+    const res=await axios.get(`https://blog-backend-production-ad2a.up.railway.app/Users/${userStore.user.id}`)
      userInfo.value=res.data.data
 })
 async function updateUsername() {
@@ -25,7 +25,7 @@ async function updateUsername() {
         return
     }
     try{
-        const res=await axios.put(`http://localhost:8080/Users/${userStore.user.id}`,
+        const res=await axios.put(`https://blog-backend-production-ad2a.up.railway.app/Users/${userStore.user.id}`,
         {username: newUsername.value,
         pwd: userStore.user.pwd})
         if(res.data.code===200){
@@ -54,7 +54,7 @@ async function updatePassword() {
         return
     }
     try{
-        const res=await axios.put(`http://localhost:8080/Users/${userStore.user.id}`,
+        const res=await axios.put(`https://blog-backend-production-ad2a.up.railway.app/Users/${userStore.user.id}`,
         {username:userStore.user.username,
          pwd:newPassword.value})
          if(res.data.code===200){
@@ -78,10 +78,10 @@ async function uploadAvatar(e) {
     const formData=new FormData()
     formData.append('file',file)
     formData.append('oldAvatar',userInfo.value.avatar||'')
-    const res=await axios.post(`http://localhost:8080/File/upload`,formData)
+    const res=await axios.post(`https://blog-backend-production-ad2a.up.railway.app/File/upload`,formData)
     const avatarUrl=res.data.data
 
-    await axios.put(`http://localhost:8080/Users/${userStore.user.id}`,{
+    await axios.put(`https://blog-backend-production-ad2a.up.railway.app/Users/${userStore.user.id}`,{
         username:userStore.user.username,
         pwd:userStore.user.pwd,
         avatar:avatarUrl

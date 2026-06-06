@@ -14,10 +14,10 @@ onMounted(()=>{
 })
 async function loadMessages() {
     if(tab.value=='received'){
-       const res=await axios.get(`http://localhost:8080/Message/receive/${userStore.user.id}`) 
+       const res=await axios.get(`https://blog-backend-production-ad2a.up.railway.app/Message/receive/${userStore.user.id}`) 
        messages.value=res.data.data
     }else{
-        const res=await axios.get(`http://localhost:8080/Message/send/${userStore.user.id}`)
+        const res=await axios.get(`https://blog-backend-production-ad2a.up.railway.app/Message/send/${userStore.user.id}`)
         messages.value=res.data.data
     }
 }

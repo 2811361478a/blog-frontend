@@ -12,7 +12,7 @@ const newMessage=ref('')
 const chatContainer=ref(null)
 const otherUser=ref([])
 onMounted(async()=>{
-    const userRes = await axios.get(`http://localhost:8080/Users/${route.params.id}`)
+    const userRes = await axios.get(`https://blog-backend-production-ad2a.up.railway.app/Users/${route.params.id}`)
     otherUser.value=userRes.data.data
     loadMessages()
     timer=setInterval(()=>{
@@ -26,16 +26,16 @@ onUnmounted(()=>{
 })
 
 async function loadMessages() {
-    const res = await axios.get(`http://localhost:8080/Message/conversation/${userStore.user.id}/${route.params.id}`)
+    const res = await axios.get(`https://blog-backend-production-ad2a.up.railway.app/Message/conversation/${userStore.user.id}/${route.params.id}`)
     messages.value = res.data.data
-    await axios.put(`http://localhost:8080/Message/read/${userStore.user.id}/${route.params.id}`)
+    await axios.put(`https://blog-backend-production-ad2a.up.railway.app/Message/read/${userStore.user.id}/${route.params.id}`)
     await nextTick()
     scrollToBottom()
 }
 async function sendMessage() {
     if(!newMessage.value.trim()) return
 
-    await axios.post(`http://localhost:8080/Message`,{
+    await axios.post(`https://blog-backend-production-ad2a.up.railway.app/Message`,{
         senderId:userStore.user.id,
         receiverId:parseInt(route.params.id),
         content:newMessage.value

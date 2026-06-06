@@ -12,11 +12,11 @@ onMounted(()=>{
     loadCategories()
 })
 async function loadCategories() {
-    const res =await axios.get(`http://localhost:8080/Category`)
+    const res =await axios.get(`https://blog-backend-production-ad2a.up.railway.app/Category`)
     categories.value=res.data.data
 }
 async function addCategory() {
-    await axios.post(`http://localhost:8080/Category`,{name:newName.value})
+    await axios.post(`https://blog-backend-production-ad2a.up.railway.app/Category`,{name:newName.value})
     newName.value=''
     loadCategories();
 }
@@ -25,13 +25,13 @@ function startEdit(id,name){
     editName.value=name;
 } 
 async function saveEdit() {
-    await axios.put(`http://localhost:8080/Category/${editId.value}`,{name:editName.value})
+    await axios.put(`https://blog-backend-production-ad2a.up.railway.app/Category/${editId.value}`,{name:editName.value})
     editId.value=null
     editName.value=''
     loadCategories()
 }
 async function deleteCategory(id) {
-    await axios.delete(`http://localhost:8080/Category/${id}`)
+    await axios.delete(`https://blog-backend-production-ad2a.up.railway.app/Category/${id}`)
     loadCategories()
 }
 

@@ -77,9 +77,9 @@ async function loadPosts() {
   loading.value=true
   error.value=''
   try{
-    let url=`http://localhost:8080/Post?page=${page.value}&size=${size.value}&sort=${sort.value},${direction.value}`
+    let url=`https://blog-backend-production-ad2a.up.railway.app/Post?page=${page.value}&size=${size.value}&sort=${sort.value},${direction.value}`
     if(route.query.authorId){
-      url=`http://localhost:8080/Post/user/${route.query.authorId}?page=${page.value}&size=${size.value}&sort=${sort.value},${direction.value}`
+      url=`https://blog-backend-production-ad2a.up.railway.app/Post/user/${route.query.authorId}?page=${page.value}&size=${size.value}&sort=${sort.value},${direction.value}`
     }else{
        if(keyword.value!==''){
         url+=`&keyword=${keyword.value}`

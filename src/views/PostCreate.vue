@@ -7,7 +7,7 @@ const userStore=useUserStore()
 const router=useRouter()
 const categories=ref([])
 onMounted(async()=>{
-    const res=await axios.get('http://localhost:8080/Category')
+    const res=await axios.get('https://blog-backend-production-ad2a.up.railway.app/Category')
     categories.value=res.data.data
 })
 const post=ref({
@@ -20,7 +20,7 @@ const post=ref({
 }) 
 
 const submit=async()=>{
-    await axios.post('http://localhost:8080/Post',post.value)
+    await axios.post('https://blog-backend-production-ad2a.up.railway.app/Post',post.value)
     router.push('/posts?message=发布成功')
 }
 </script>

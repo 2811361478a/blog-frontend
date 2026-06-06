@@ -16,14 +16,14 @@ const route=useRoute()
 const post=ref(null)
 const showDeleteDialog=ref(false)
 onMounted(async()=>{
-   const res = await axios.get(`http://localhost:8080/Post/${route.params.id}`)
+   const res = await axios.get(`https://blog-backend-production-ad2a.up.railway.app/Post/${route.params.id}`)
    post.value=res.data.data
-   const likeCountRes= await axios.get(`http://localhost:8080/Like/${post.value.id}/count`)
-   const isLikedRes=await axios.get(`http://localhost:8080/Like/${post.value.id}/check?userId=${userStore.user.id}`)
+   const likeCountRes= await axios.get(`https://blog-backend-production-ad2a.up.railway.app/Like/${post.value.id}/count`)
+   const isLikedRes=await axios.get(`https://blog-backend-production-ad2a.up.railway.app/Like/${post.value.id}/check?userId=${userStore.user.id}`)
    likeCount.value=likeCountRes.data.data
    isLiked.value=isLikedRes.data.data
-   const commentsRes=await axios.get(`http://localhost:8080/Comment/${post.value.id}`)
-   const commentCountRes=await axios.get(`http://localhost:8080/Comment/${post.value.id}/count`)
+   const commentsRes=await axios.get(`https://blog-backend-production-ad2a.up.railway.app/Comment/${post.value.id}`)
+   const commentCountRes=await axios.get(`https://blog-backend-production-ad2a.up.railway.app/Comment/${post.value.id}/count`)
    comments.value=commentsRes.data.data
    commentCount.value=commentCountRes.data.data
 })
@@ -33,24 +33,24 @@ function confirmDeleteComment(commentId){
 }
 async function deleteComment() {
     showDeleteCommentDialog.value=false
-    await axios.delete(`http://localhost:8080/Comment/${deleteCommentId.value}`)
-    const commentsRes=await axios.get(`http://localhost:8080/Comment/${post.value.id}`)
+    await axios.delete(`https://blog-backend-production-ad2a.up.railway.app/Comment/${deleteCommentId.value}`)
+    const commentsRes=await axios.get(`https://blog-backend-production-ad2a.up.railway.app/Comment/${post.value.id}`)
     comments.value=commentsRes.data.data
     commentCount.value--
 }
 async function submitComment() {
     if(!newComment.value.trim()) return
 
-    await axios.post(`http://localhost:8080/Comment/${post.value.id}?userId=${userStore.user.id}`,
+    await axios.post(`https://blog-backend-production-ad2a.up.railway.app/Comment/${post.value.id}?userId=${userStore.user.id}`,
     newComment.value,{headers:{'Content-Type':'text/plain'}}
     )
     newComment.value=''
-    const commentsRes=await axios.get(`http://localhost:8080/Comment/${post.value.id}`)
+    const commentsRes=await axios.get(`https://blog-backend-production-ad2a.up.railway.app/Comment/${post.value.id}`)
     comments.value=commentsRes.data.data
     commentCount.value++
 }
 async function toggleLike(){
-   const res=await axios.post(`http://localhost:8080/Like/${post.value.id}?userId=${userStore.user.id}`)
+   const res=await axios.post(`https://blog-backend-production-ad2a.up.railway.app/Like/${post.value.id}?userId=${userStore.user.id}`)
    if(res.data.data){
    isLiked.value=true
    likeCount.value++
@@ -62,7 +62,7 @@ async function toggleLike(){
 }
 async function confirmDelete(){
     showDeleteDialog.value=false
-    await axios.delete(`http://localhost:8080/Post/${route.params.id}?userId=${userStore.user.id}`)
+    await axios.delete(`https://blog-backend-production-ad2a.up.railway.app/Post/${route.params.id}?userId=${userStore.user.id}`)
     router.push('/posts?message=删除成功')
    }
 function back(){
