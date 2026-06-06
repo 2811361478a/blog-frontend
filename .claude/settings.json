@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -X POST http://localhost:8080/Post -H \"Content-Type: application/json\" -d @- -w \"\\\\nHTTP: %{http_code}\\\\n\")",
+      "Bash(curl -s -X POST http://localhost:8080/Post -H \"Content-Type: application/json\" -d '{\"title\":\"测试\",\"content\":\"内容\",\"summary\":\"摘要\",\"authorId\":1,\"status\":1}')",
+      "Bash(curl -s -X POST http://localhost:8080/Post -H \"Content-Type: application/json\" -d '{\"title\":\"测试\",\"content\":\"内容\"}')",
+      "Bash(curl -s -X POST http://localhost:8080/Post -H \"Content-Type: application/json\" -d '{\"title\":\"test\",\"content\":\"hello\"}')",
+      "Bash(taskkill //F //PID 142552)",
+      "Bash(curl -s http://localhost:8080/Post/3)",
+      "Bash(dir \"C:\\\\Users\\\\28113\\\\Desktop\\\\myopencode\\\\java-learning\\\\blog-demo\")",
+      "Bash(mysql -u root -p123456 -e \"SHOW DATABASES LIKE 'todo_db';\")",
+      "Bash(where mysql *)",
+      "Read(//c/Program Files/MySQL/**)",
+      "Read(//c/Program Files \\(x86\\)/MySQL/**)",
+      "Bash(\"C:/Program Files/MySQL/mysql-8.0.46-winx64/bin/mysql.exe\" -u root -p123456 -e \"SHOW DATABASES LIKE 'todo_db';\")",
+      "Bash(\"C:/Program Files/MySQL/mysql-8.0.46-winx64/bin/mysql.exe\" -u root -p123456 -e \"SHOW TABLES IN todo_db;\")",
+      "Bash('C:/Program Files/MySQL/mysql-8.0.46-winx64/bin/mysql.exe' -u root -p123456 -e ' *)"
+    ]
+  }
+}
